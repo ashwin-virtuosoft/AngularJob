@@ -1,0 +1,109 @@
+<div class="container">
+<div class="center">
+  <h1>Job Portal RegisterForm</h1>
+  <form [formGroup]="RegisterForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label for="firstName" class="col-md-12 col-form-label">First Name</label>
+      <div class="col-md-10">
+        <input type="text" class="form-control  small-input" id="firstName" placeholder="First Name" formControlName="firstName">
+        <div class="small-elt">
+          <p *ngIf="RegisterForm.get('firstName').errors?.['required'] && RegisterForm.get('firstName').touched">
+            First Name is Required
+          </p>
+          <p *ngIf="RegisterForm.get('firstName').errors?.['onlyLetters'] && RegisterForm.get('firstName').touched">
+            Only Letter is Allowed
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="lastName" class="col-md-6 col-form-label">Last Name</label>
+      <div class="col-md-10">
+        <input type="text" class="form-control small-input" id="lastName" placeholder="Last Name" formControlName="lastName">
+        <div class="small-elt">
+          <p *ngIf="RegisterForm.get('lastName').errors?.['required'] && RegisterForm.get('lastName').touched">
+            Last Name is Required
+          </p>
+          <p *ngIf="RegisterForm.get('lastName').errors?.['onlyLetters'] && RegisterForm.get('lastName').touched">
+            Only Letter is Allowed
+          </p>                
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="email" class="col-md-6 col-form-label">Email</label>
+      <div class="col-md-10">
+        <input type="email" class="form-control small-input" id="email" placeholder="Email" formControlName="email">
+        <div class="small-elt">
+          <p *ngIf="RegisterForm.get('email').errors?.['required'] && RegisterForm.get('email').touched">
+            Email is Required
+          </p>
+          <p *ngIf="RegisterForm.get('email').errors?.['email'] && RegisterForm.get('email').touched">
+            Invalid Email
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="phoneNumber" class="col-md-6 col-form-label">Phone Number</label>
+      <div class="col-md-10">
+        <input type="text" class="form-control small-input" id="phoneNumber" placeholder="Phone Number" formControlName="phoneNumber">
+        <div class="small-elt">
+          <p *ngIf="RegisterForm.get('phoneNumber').errors?.['required'] && RegisterForm.get('phoneNumber').touched">
+            Phone Number is Required
+          </p>
+          <p *ngIf="RegisterForm.get('phoneNumber').errors?.['phoneNo'] && RegisterForm.get('phoneNumber').touched">
+            Invalid Phone Number
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="phoneNumber" class="col-md-6 col-form-label">Password</label>
+      <div class="col-md-10">
+        <input type="text" class="form-control small-input" id="Password" placeholder="Password" formControlName="Password">
+      </div>
+      </div>
+    
+
+    <div class="form-group row">
+      <div class="col-md-6">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="Employee" name="userType" formControlName="userType" value="Employer">
+        <label class="form-check-label" for="Employee">Employer</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="JobSeeker" name="userType" formControlName="userType" value="JobSeeker">
+        <label class="form-check-label" for="JobSeeker">Job Seeker</label>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <div class="col-md-6"><br>
+        <button type="submit" class="btn btn-info">Sign Up</button><br><br> 
+        <!-- <b>Or Sign Up With Google</b> -->
+      </div>
+     
+    </div>
+ 
+  </div>
+  </form>
+
+<div class="form-group row">
+  <div class="col-md-6">
+
+    <asl-google-signin-button type='standard' size='medium' *ngIf="!user"></asl-google-signin-button>
+  
+    <!-- Navigate to LoggedInUser component when user is logged in -->
+    <a *ngIf="user" [routerLink]="['/LoggedInUser']" routerLinkActive="active" ariaCurrentWhenActive="page"></a>
+  
+    <!-- Show user details in app-logged-in component -->
+    <div *ngIf="user">
+      <app-logged-in [user]="user"></app-logged-in>
+    </div>
+  
+  </div>
+  
+</div>
+</div>
+</div>
